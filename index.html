@@ -11,9 +11,9 @@
         <div id="bookinfo">
             <input type="text" id="title" class="input" placeholder="title" pattern="(^[A-Z\sa-z]+$)" required>
             <input type="text" id="author" class="input" placeholder="author" pattern="(^[A-Z\sa-z]+$)" required>
-            <input type="number" id="pages" class="input" placeholder="pages" pattern="(^(\d+)$)" required>
+            <input type="number" id="pages" class="input" placeholder="pages" pattern="(^(\d+)$)" min="0" max="9999" required>
             <div><input type="checkbox" id="read"> Read</div>
-            <input type="number" id="rating" class="input" placeholder="rating" pattern="^([0-9]|10)$" required>
+            <input type="number" id="rating" class="input" placeholder="rating" pattern="(^(\d+)$)" min="0" max="10" required>
             <button id="addbook">Add book</button>
         </div>
     </form>
