@@ -72,7 +72,7 @@ Array.prototype.populateShelf = function() {
         read.innerText = book.read ? 'Read' : 'Unread';
         bookShelf.appendChild(bookHolder);
         bookHolder.appendChild(title);
-        bookholder.appendChild(author);
+        bookHolder.appendChild(author);
         bookHolder.appendChild(pages);
         bookHolder.appendChild(rating);
         bookHolder.appendChild(read);
