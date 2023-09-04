@@ -7,9 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-
-
-<script type="module" src="script.js"></script>    
+    <form action="">
+        <div id="bookinfo">
+            <input type="text" id="title" class="input" placeholder="title" pattern="(^[A-Za-z]+$)" required>
+            <input type="text" id="author" class="input" placeholder="author" pattern="(^[A-Za-z]+$)" required>
+            <input type="number" id="pages" class="input" placeholder="pages" pattern="(\d{5}([\-]\d{4})?)" required>
+            <div><input type="checkbox" id="read"> Read</div>
+            <input type="number" id="rating" class="input" placeholder="rating" pattern="(\d{5}([\-]\d{4})?)" required>
+            <button id="addbook">Add book</button>
+        </div>
+    </form>
+    <form action="">
+        <div id="takebook">
+            <input type="text" id="removename" placeholder="remove title" pattern="(^[A-Za-z]+$)">
+            <button id="removebook">Remove book</button>
+        </div>
+    </form>
+    <div id="bookholder"></div>
+<script src="script.js"></script>    
 </body>
 </html>
