@@ -3,6 +3,8 @@ const removeButton = document.querySelector('#removebook');
 const input = document.querySelectorAll('.input');
 const inputs = [...input];
 const bookShelf = document.querySelector('#bookholder');
+let removeButtonList;
+let removeButtonArray;
 
 let myLibrary = [];
 
@@ -30,6 +32,13 @@ Book.prototype.removeBookFromLibrary = function(myLibrary, title) {
 //! proto function takes in value and returns a library array without the specific titled book
 //! this can be used to overwrite and update the array later
 
+Book.prototype.removeBookOnClick = function() {
+    const bookIndex = myLibrary.indexOf(this);
+    if (bookIndex !== -1) {
+        myLibrary.splice(bookIndex, 1);
+    }
+}
+
 Book.prototype.isRead = function() {
     this.read = !this.read;
 }
@@ -41,17 +50,26 @@ Book.prototype.showOnShelf = function() {
     const pages = document.createElement('p');
     const rating = document.createElement('p');
     const read = document.createElement('p');
+    const removeButton = document.createElement('button');
+    book.classList.add('book');
     title.innerText = this.title;
     author.innerText = this.author;
     pages.innerText = this.pages + ' pages';
     rating.innerText = this.rating + '/10';
     read.innerText = this.read ? 'Read' : 'Unread'; //?ternary operator can be used here instead of if/else for direct comparison from object
+    removeButton.innerText = 'Remove';
+    removeButton.classList.add('removeButton');
     bookShelf.appendChild(book);
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
     book.appendChild(rating);
     book.appendChild(read);
+    book.appendChild(removeButton);
+    removeButton.addEventListener('click', () => {
+        myLibrary = Book.prototype.removeBookFromLibrary(myLibrary, this.title);
+        myLibrary.populateShelf();
+    })
 }
 
 //! makes individual book divs, and loads info from its respective book object via 'this'
@@ -65,17 +83,26 @@ Array.prototype.populateShelf = function() {
         const pages = document.createElement('p');
         const rating = document.createElement('p');
         const read = document.createElement('p');
+        const removeButton = document.createElement('button');
+        bookHolder.classList.add('book');
         title.innerText = book.title;
         author.innerText = book.author;
         pages.innerText = book.pages + ' pages';
         rating.innerText = book.rating + '/10';
         read.innerText = book.read ? 'Read' : 'Unread';
+        removeButton.innerText = 'Remove';
+        removeButton.classList.add('removeButton');
         bookShelf.appendChild(bookHolder);
         bookHolder.appendChild(title);
         bookHolder.appendChild(author);
         bookHolder.appendChild(pages);
         bookHolder.appendChild(rating);
         bookHolder.appendChild(read);
+        bookHolder.appendChild(removeButton);
+        removeButton.addEventListener('click', () => {
+            myLibrary = Book.prototype.removeBookFromLibrary(myLibrary, book.title);
+            myLibrary.populateShelf();
+        });
     });
 }
 
@@ -93,6 +120,8 @@ function checkValidity() {
         bookButton.classList.add('invalid-button');
     }
 }
+
+//? setup button event listeners
 
 //! checks if all input fields are proper before creating book object to prevent empty or undefined books
 
@@ -127,6 +156,7 @@ removeButton.addEventListener('click', function(event) {
 
 //! event listener gets book title from the textbox and passes into remove book fxn, which returns the value and that overwrites the old array
 //! this new array is then cleared and repopulated with the remaining books
+
 
 const book1 = new Book('The Martian', 'Andy Weir', 500, true, 5);
 const book2 = new Book('Das Kapital', 'Karl Marx', 9000, false, 1);
