@@ -19,7 +19,7 @@ function Book(title, author, pages, read, rating) {
 Book.prototype.addBookToLibrary = function(myLibrary, title, author, pages, read, rating) {
     let newBook = new Book(title, author, pages, read, rating);
     myLibrary.push(newBook);
-    newBook.populateShelf();
+    myLibrary.populateShelf();
 }
 
 //! constructor can be called anywhere to take in values and push new book into library array
