@@ -43,6 +43,8 @@ Array.prototype.populateShelf = function() {
         const author = document.createElement('h3');
         const pages = document.createElement('p');
         const rating = document.createElement('p');
+        const readHolder =document.createElement('div');
+        const checkbox = document.createElement('input');
         const read = document.createElement('p');
         const removeButton = document.createElement('button');
         bookHolder.classList.add('book');
@@ -51,7 +53,10 @@ Array.prototype.populateShelf = function() {
         author.innerText = book.author;
         pages.innerText = book.pages + ' pages';
         rating.innerText = book.rating + '/10';
+        readHolder.classList.add('readBox');
+        checkbox.setAttribute('type', 'checkbox');
         read.innerText = book.read ? 'Read' : 'Unread';
+        checkbox.checked = book.read ? true : false;
         removeButton.innerText = 'Remove';
         removeButton.classList.add('removeButton');
         bookShelf.appendChild(bookHolder);
@@ -59,13 +64,19 @@ Array.prototype.populateShelf = function() {
         bookHolder.appendChild(author);
         bookHolder.appendChild(pages);
         bookHolder.appendChild(rating);
-        bookHolder.appendChild(read);
+        bookHolder.appendChild(readHolder);
+        readHolder.appendChild(checkbox);
+        readHolder.appendChild(read);
         bookHolder.appendChild(removeButton);
         removeButton.addEventListener('click', (event) => {
             const bookDiv = event.target.parentElement;
             bookShelf.removeChild(bookDiv);
             myLibrary = Book.prototype.removeBookFromLibrary(myLibrary, book.title);
         });
+        checkbox.addEventListener('click', function() {
+                book.isRead();
+                read.innerText = book.read ? 'Read' : 'Unread';
+        })
     });
 }
 //! the CSS custom data attribute is setup here to make searching for the title fast

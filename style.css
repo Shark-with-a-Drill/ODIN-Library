@@ -12,3 +12,8 @@
     margin: 15px;
     align-items: center;
 }
+
+.readBox {
+    display: flex;
+    gap: 15px;
+}
