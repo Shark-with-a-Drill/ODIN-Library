@@ -19,7 +19,7 @@ function Book(title, author, pages, read, rating) {
 Book.prototype.addBookToLibrary = function(myLibrary, title, author, pages, read, rating) {
     let newBook = new Book(title, author, pages, read, rating);
     myLibrary.push(newBook);
-    newBook.showOnShelf();
+    newBook.populateShelf();
 }
 
 //! constructor can be called anywhere to take in values and push new book into library array
@@ -42,38 +42,39 @@ Book.prototype.removeBookOnClick = function() {
 Book.prototype.isRead = function() {
     this.read = !this.read;
 }
-
-Book.prototype.showOnShelf = function() {
-    const book = document.createElement('div');
-    const title = document.createElement('h2');
-    const author = document.createElement('h3');
-    const pages = document.createElement('p');
-    const rating = document.createElement('p');
-    const read = document.createElement('p');
-    const removeButton = document.createElement('button');
-    book.classList.add('book');
-    title.innerText = this.title;
-    author.innerText = this.author;
-    pages.innerText = this.pages + ' pages';
-    rating.innerText = this.rating + '/10';
-    read.innerText = this.read ? 'Read' : 'Unread'; //?ternary operator can be used here instead of if/else for direct comparison from object
-    removeButton.innerText = 'Remove';
-    removeButton.classList.add('removeButton');
-    bookShelf.appendChild(book);
-    book.appendChild(title);
-    book.appendChild(author);
-    book.appendChild(pages);
-    book.appendChild(rating);
-    book.appendChild(read);
-    book.appendChild(removeButton);
-    removeButton.addEventListener('click', () => {
-        myLibrary = Book.prototype.removeBookFromLibrary(myLibrary, this.title);
-        myLibrary.populateShelf();
-    })
-}
+//? Book object prototype method for adding to shelf and refreshing array
+// Book.prototype.showOnShelf = function() {
+//     const book = document.createElement('div');
+//     const title = document.createElement('h2');
+//     const author = document.createElement('h3');
+//     const pages = document.createElement('p');
+//     const rating = document.createElement('p');
+//     const read = document.createElement('p');
+//     const removeButton = document.createElement('button');
+//     book.classList.add('book');
+//     title.innerText = this.title;
+//     author.innerText = this.author;
+//     pages.innerText = this.pages + ' pages';
+//     rating.innerText = this.rating + '/10';
+//     read.innerText = this.read ? 'Read' : 'Unread'; //?ternary operator can be used here instead of if/else for direct comparison from object
+//     removeButton.innerText = 'Remove';
+//     removeButton.classList.add('removeButton');
+//     bookShelf.appendChild(book);
+//     book.appendChild(title);
+//     book.appendChild(author);
+//     book.appendChild(pages);
+//     book.appendChild(rating);
+//     book.appendChild(read);
+//     book.appendChild(removeButton);
+//     removeButton.addEventListener('click', () => {
+//         myLibrary = Book.prototype.removeBookFromLibrary(myLibrary, this.title);
+//         myLibrary.populateShelf();
+//     })
+// }
 
 //! makes individual book divs, and loads info from its respective book object via 'this'
 
+//? Array prototype method for adding to shelf and refreshing array
 Array.prototype.populateShelf = function() {
     bookShelf.innerText = '';
     this.forEach(book => {
