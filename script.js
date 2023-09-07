@@ -5,17 +5,17 @@ const inputs = [...input];
 const bookShelf = document.querySelector('#bookholder');
 
 let myLibrary = [];
-
-function Book(title, author, pages, read, rating) {
+function Book(title, author, pages, read, rating, cover) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
     this.rating = rating;
+    this.cover = cover;
 }
 
-Book.prototype.addBookToLibrary = function(myLibrary, title, author, pages, read, rating) {
-    let newBook = new Book(title, author, pages, read, rating);
+Book.prototype.addBookToLibrary = function(myLibrary, title, author, pages, read, rating, cover) {
+    let newBook = new Book(title, author, pages, read, rating, cover);
     myLibrary.push(newBook);
     myLibrary.populateShelf();
 }
@@ -39,6 +39,7 @@ Array.prototype.populateShelf = function() {
     bookShelf.innerText = '';
     this.forEach(book => {
         const bookHolder = document.createElement('div');
+        const cover = document.createElement('img');
         const title = document.createElement('h2');
         const author = document.createElement('h3');
         const pages = document.createElement('p');
@@ -48,9 +49,11 @@ Array.prototype.populateShelf = function() {
         const read = document.createElement('p');
         const removeButton = document.createElement('button');
         bookHolder.classList.add('book');
+        cover.src = book.cover;
         title.innerText = book.title;
         title.setAttribute('sort-title', book.title);
         author.innerText = book.author;
+        title.setAttribute('sort-author', book.author);
         pages.innerText = book.pages + ' pages';
         rating.innerText = book.rating + '/10';
         readHolder.classList.add('readBox');
@@ -60,6 +63,7 @@ Array.prototype.populateShelf = function() {
         removeButton.innerText = 'Remove';
         removeButton.classList.add('removeButton');
         bookShelf.appendChild(bookHolder);
+        bookHolder.appendChild(cover);
         bookHolder.appendChild(title);
         bookHolder.appendChild(author);
         bookHolder.appendChild(pages);
@@ -99,23 +103,32 @@ function checkValidity() {
 
 //! checks if all input fields are proper before creating book object to prevent empty or undefined books
 
-bookButton.addEventListener('click', function() {
+bookButton.addEventListener('click', function(event) {
+    event.preventDefault();
     let title = document.querySelector('#title').value;
     let author = document.querySelector('#author').value;
     let pages = document.querySelector('#pages').value;
     let read = document.querySelector('#read').checked;
     let rating = document.querySelector('#rating').value;
+    let coverInput = document.querySelector('#cover');
+    let cover = coverInput.files[0];
 
     checkValidity();
 
     //? create variables holding the value of form info to pass into function
     if (bookButton.classList.contains('valid-button')) {
-        Book.prototype.addBookToLibrary(myLibrary, title, author, pages, read, rating)
-        document.querySelector('#title').value = "";
-        document.querySelector('#author').value = "";
-        document.querySelector('#pages').value = "";
-        document.querySelector('#read').checked = false;
-        document.querySelector('#rating').value = "";
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const coverImageURL = event.target.result;
+            Book.prototype.addBookToLibrary(myLibrary, title, author, pages, read, rating, coverImageURL)
+            document.querySelector('#title').value = "";
+            document.querySelector('#author').value = "";
+            document.querySelector('#pages').value = "";
+            document.querySelector('#read').checked = false;
+            document.querySelector('#rating').value = "";
+        };
+        reader.readAsDataURL(cover);
+
     }    
 })
 
@@ -124,13 +137,16 @@ bookButton.addEventListener('click', function() {
 removeButton.addEventListener('click', function(event) {
     event.preventDefault(); //prevent refresh on button press
     let removedTitle = document.querySelector('#removename');
-    const divFinder = document.querySelector(`h2[sort-title='${removedTitle.value}']`);
-    const allValid = removedTitle.checkValidity() && divFinder != null;
-    if (allValid) {
-        const div = divFinder.parentElement;
+    let removedAuthor = document.querySelector('#removeauthor');
+    const divFinderTitle = document.querySelector(`h2[sort-title='${removedTitle.value}']`);
+    const divFinderAuthor = document.querySelector(`h2[sort-title='${removedTitle.value}']`);
+    const allValid = removedTitle.checkValidity() && removedAuthor.checkValidity() && divFinderTitle != null;
+    if (allValid && divFinderTitle.parentElement == divFinderAuthor.parentElement) {
+        const div = divFinderTitle.parentElement;
         bookShelf.removeChild(div);
         myLibrary = Book.prototype.removeBookFromLibrary(myLibrary, removedTitle.value);
         removedTitle.value = '';
+        removedAuthor.value = '';
     }
 })
 
@@ -140,9 +156,9 @@ removeButton.addEventListener('click', function(event) {
 //! the library is then updated to remove the respective Book object
 
 
-const book1 = new Book('The Martian', 'Andy Weir', 500, true, 5);
-const book2 = new Book('Das Kapital', 'Karl Marx', 9000, false, 1);
-const book3 = new Book('Flowers for Charlie', 'Charlie', 5, true, 5);
+const book1 = new Book('The Martian', 'Andy Weir', 500, true, 5, './2049.png');
+const book2 = new Book('Das Kapital', 'Karl Marx', 9000, false, 1, './2049.png');
+const book3 = new Book('Flowers for Charlie', 'Charlie', 5, true, 5, './2049.png');
 
 myLibrary.push(book1, book2, book3);
 myLibrary.populateShelf();
