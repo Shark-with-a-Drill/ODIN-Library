@@ -90,4 +90,6 @@
 
 .cover {
     max-width: 326px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
