@@ -52,6 +52,22 @@
     scroll-behavior: smooth;
   }
 
+.main-grid {
+    display: grid;
+    grid-template-columns: 300px minmax(500px, 1fr);
+    grid-template-rows: 1fr;
+    min-width: 500px;
+}
+
+#bookholder {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: grid;
+    gap: 20px;
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
 #bookinfo, #takebook {
     display: flex;
     flex-direction: column;
@@ -62,7 +78,7 @@
 .book {
     display: flex;
     flex-direction: column;
-    max-width: 250px;
+    max-width: fit-content;
     margin: 15px;
     align-items: center;
 }

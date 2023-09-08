@@ -156,8 +156,16 @@ const book2 = new Book('Mad Max: Fury Road', 'George Miller', true, 8, './madmax
 const book3 = new Book('How To Train Your Dragon', 'Dean DeBlois & Chris Sanders', true, 10, './httyd.jpg');
 const book4 = new Book('Inception', 'Christopher Nolan', true, 9, './inception.jpg');
 const book5 = new Book('Everything Everywhere All At Once', 'Daniel Kwan & David Scheinert', true, 10, './eeaao.jpg');
+const book6 = new Book('Whiplash', 'Damien Chazelle', true, 10, './whiplash.jpg');
 
-myLibrary.push(book1, book2, book3, book4, book5);
+const book7 = new Book('Blade Runner 2049', 'Dennis Villenueve', true, 8, './2049.jpg');
+const book8 = new Book('Mad Max: Fury Road', 'George Miller', true, 8, './madmax.jpeg');
+const book9 = new Book('How To Train Your Dragon', 'Dean DeBlois & Chris Sanders', true, 10, './httyd.jpg');
+const book10 = new Book('Inception', 'Christopher Nolan', true, 9, './inception.jpg');
+const book11 = new Book('Everything Everywhere All At Once', 'Daniel Kwan & David Scheinert', true, 10, './eeaao.jpg');
+const book12 = new Book('Whiplash', 'Damien Chazelle', true, 10, './whiplash.jpg');
+
+myLibrary.push(book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12);
 myLibrary.populateShelf();
 
 //? extra/deprecated remove book method
