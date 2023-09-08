@@ -7,34 +7,33 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="">
-        <div id="bookinfo">
-            <input type="text" id="title" class="input" placeholder="title" pattern="(^[A-Z\sa-z]+$)" required>
-            <input type="text" id="author" class="input" placeholder="author" pattern="(^[A-Z\sa-z]+$)" required>
-            <input type="number" id="pages" class="input" placeholder="pages" pattern="(^(\d+)$)" min="0" max="9999" required>
-            <div><input type="checkbox" id="read"> Read</div>
-            <input type="number" id="rating" class="input" placeholder="rating" pattern="(^(\d+)$)" min="0" max="10" required>
-            <input type="file" id="cover" accept="image/*">
-            <button id="addbook">Add book</button>
-        </div>
-    </form>
-    <form action="">
-        <div id="takebook">
-            <input type="text" id="removename" placeholder="remove title" pattern="(^[A-Z\sa-z]+$)" required>
-            <input type="text" id="removeauthor" placeholder="remove author" pattern="(^[A-Z\sa-z]+$)" required>
-            <button id="removebook">Remove book</button>
-        </div>
-    </form>
-
-    <!-- <form action="">
-        <div id="testUploader">
-            <input type="file" id="cover" accept="image/*">
-            <button id="addcover">Add Cover</button>
-        </div>
-    </form>
-    <div id="coverHolder"></div> -->
-
-    <div id="bookholder"></div>
+    <div class="main-grid">
+        <form action="">
+            <div id="bookinfo">
+                <input type="text" id="title" class="input" placeholder="Title" pattern="(^[A-Za-z0-9\s:'-]+$)" required>
+                <input type="text" id="author" class="input" placeholder="Director" pattern="(^[A-Z\sa-z&]+$)" required>
+                <input type="number" id="rating" class="input" placeholder="Rating" pattern="(^(\d+)$)" min="0" max="10" required>
+                <div><input type="checkbox" id="read"> Seen</div>
+                <input type="file" id="cover" accept="image/*">
+                <button id="addbook">Add</button>
+            </div>
+        </form>
+        <form action="">
+            <div id="takebook">
+                <input type="text" id="removename" placeholder="Title" pattern="(^[A-Z\sa-z]+$)" required>
+                <input type="text" id="removeauthor" placeholder="Director" pattern="(^[A-Z\sa-z]+$)" required>
+                <button id="removebook">Remove</button>
+            </div>
+        </form>
+        <!-- <form action="">
+            <div id="testUploader">
+                <input type="file" id="cover" accept="image/*">
+                <button id="addcover">Add Cover</button>
+            </div>
+        </form>
+        <div id="coverHolder"></div> -->
+        <div id="bookholder"></div>
+    </div>
 
     
 <script src="script.js"></script>    

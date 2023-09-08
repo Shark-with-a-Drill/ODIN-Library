@@ -1,3 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik:wght@300;400;500;700&display=swap');
+@import url('https://www.w3schools.com/w3css/4/w3.css');
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    --card-color: #181a1b; 
+    --bg-color:#1c1e1f;
+    --divider: #292c2e;
+    --user-img-border: #464646;
+    --roundedcard: 10px;
+    --smalltextcolor: #9d9588;
+    --bigtextcolor: #bab4ab;
+    --sidebarcolor: #828490;
+    --logocolor: #e8e6e3;
+  }
+  body {
+    line-height: 1.5;
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--bg-color);
+  }
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  input, button, textarea, select {
+    font: inherit;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    color: white;
+  }
+  a, i {
+    color: white;
+  }
+  ul[role='list'],
+  ol[role='list'], li, ul {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+
 #bookinfo, #takebook {
     display: flex;
     flex-direction: column;
@@ -16,4 +70,8 @@
 .readBox {
     display: flex;
     gap: 15px;
+}
+
+.cover {
+    max-width: 326px;
 }

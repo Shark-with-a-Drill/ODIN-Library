@@ -5,17 +5,16 @@ const inputs = [...input];
 const bookShelf = document.querySelector('#bookholder');
 
 let myLibrary = [];
-function Book(title, author, pages, read, rating, cover) {
+function Book(title, author, read, rating, cover) {
     this.title = title;
     this.author = author;
-    this.pages = pages;
     this.read = read;
     this.rating = rating;
     this.cover = cover;
 }
 
-Book.prototype.addBookToLibrary = function(myLibrary, title, author, pages, read, rating, cover) {
-    let newBook = new Book(title, author, pages, read, rating, cover);
+Book.prototype.addBookToLibrary = function(myLibrary, title, author, read, rating, cover) {
+    let newBook = new Book(title, author, read, rating, cover);
     myLibrary.push(newBook);
     myLibrary.populateShelf();
 }
@@ -42,7 +41,6 @@ Array.prototype.populateShelf = function() {
         const cover = document.createElement('img');
         const title = document.createElement('h2');
         const author = document.createElement('h3');
-        const pages = document.createElement('p');
         const rating = document.createElement('p');
         const readHolder =document.createElement('div');
         const checkbox = document.createElement('input');
@@ -50,15 +48,15 @@ Array.prototype.populateShelf = function() {
         const removeButton = document.createElement('button');
         bookHolder.classList.add('book');
         cover.src = book.cover;
+        cover.classList.add('cover');
         title.innerText = book.title;
         title.setAttribute('sort-title', book.title);
         author.innerText = book.author;
         title.setAttribute('sort-author', book.author);
-        pages.innerText = book.pages + ' pages';
         rating.innerText = book.rating + '/10';
         readHolder.classList.add('readBox');
         checkbox.setAttribute('type', 'checkbox');
-        read.innerText = book.read ? 'Read' : 'Unread';
+        read.innerText = book.read ? 'Seen' : 'Unwatched';
         checkbox.checked = book.read ? true : false;
         removeButton.innerText = 'Remove';
         removeButton.classList.add('removeButton');
@@ -66,7 +64,6 @@ Array.prototype.populateShelf = function() {
         bookHolder.appendChild(cover);
         bookHolder.appendChild(title);
         bookHolder.appendChild(author);
-        bookHolder.appendChild(pages);
         bookHolder.appendChild(rating);
         bookHolder.appendChild(readHolder);
         readHolder.appendChild(checkbox);
@@ -79,7 +76,7 @@ Array.prototype.populateShelf = function() {
         });
         checkbox.addEventListener('click', function() {
                 book.isRead();
-                read.innerText = book.read ? 'Read' : 'Unread';
+                read.innerText = book.read ? 'Seen' : 'Unwatched';
         })
     });
 }
@@ -107,7 +104,6 @@ bookButton.addEventListener('click', function(event) {
     event.preventDefault();
     let title = document.querySelector('#title').value;
     let author = document.querySelector('#author').value;
-    let pages = document.querySelector('#pages').value;
     let read = document.querySelector('#read').checked;
     let rating = document.querySelector('#rating').value;
     let coverInput = document.querySelector('#cover');
@@ -120,10 +116,9 @@ bookButton.addEventListener('click', function(event) {
         const reader = new FileReader();
         reader.onload = function(event) {
             const coverImageURL = event.target.result;
-            Book.prototype.addBookToLibrary(myLibrary, title, author, pages, read, rating, coverImageURL)
+            Book.prototype.addBookToLibrary(myLibrary, title, author, read, rating, coverImageURL)
             document.querySelector('#title').value = "";
             document.querySelector('#author').value = "";
-            document.querySelector('#pages').value = "";
             document.querySelector('#read').checked = false;
             document.querySelector('#rating').value = "";
         };
@@ -156,11 +151,13 @@ removeButton.addEventListener('click', function(event) {
 //! the library is then updated to remove the respective Book object
 
 
-const book1 = new Book('The Martian', 'Andy Weir', 500, true, 5, './2049.png');
-const book2 = new Book('Das Kapital', 'Karl Marx', 9000, false, 1, './2049.png');
-const book3 = new Book('Flowers for Charlie', 'Charlie', 5, true, 5, './2049.png');
+const book1 = new Book('Blade Runner 2049', 'Dennis Villenueve', true, 8, './2049.jpg');
+const book2 = new Book('Mad Max: Fury Road', 'George Miller', true, 8, './madmax.jpeg');
+const book3 = new Book('How To Train Your Dragon', 'Dean DeBlois & Chris Sanders', true, 10, './httyd.jpg');
+const book4 = new Book('Inception', 'Christopher Nolan', true, 9, './inception.jpg');
+const book5 = new Book('Everything Everywhere All At Once', 'Daniel Kwan & David Scheinert', true, 10, './eeaao.jpg');
 
-myLibrary.push(book1, book2, book3);
+myLibrary.push(book1, book2, book3, book4, book5);
 myLibrary.populateShelf();
 
 //? extra/deprecated remove book method
