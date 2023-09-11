@@ -121,6 +121,7 @@ bookButton.addEventListener('click', function(event) {
             document.querySelector('#author').value = "";
             document.querySelector('#read').checked = false;
             document.querySelector('#rating').value = "";
+            document.querySelector('#cover').value = "";
         };
         reader.readAsDataURL(cover);
 
@@ -134,7 +135,7 @@ removeButton.addEventListener('click', function(event) {
     let removedTitle = document.querySelector('#removename');
     let removedAuthor = document.querySelector('#removeauthor');
     const divFinderTitle = document.querySelector(`h2[sort-title='${removedTitle.value}']`);
-    const divFinderAuthor = document.querySelector(`h2[sort-title='${removedTitle.value}']`);
+    const divFinderAuthor = document.querySelector(`h2[sort-author='${removedAuthor.value}']`);
     const allValid = removedTitle.checkValidity() && removedAuthor.checkValidity() && divFinderTitle != null;
     if (allValid && divFinderTitle.parentElement == divFinderAuthor.parentElement) {
         const div = divFinderTitle.parentElement;
