@@ -125,7 +125,7 @@
   border-radius: 1px;
   border-style: solid;
   object-fit: cover;
-  max-height: 440px;
+  height: 440px;
 }
 
 .book {
