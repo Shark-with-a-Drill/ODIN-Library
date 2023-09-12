@@ -37,6 +37,7 @@ Book.prototype.isRead = function() {
 Array.prototype.populateShelf = function() {
     bookShelf.innerText = '';
     this.forEach(book => {
+        const posterHolder = document.createElement('div');
         const bookHolder = document.createElement('div');
         const cover = document.createElement('img');
         const title = document.createElement('h2');
@@ -47,6 +48,7 @@ Array.prototype.populateShelf = function() {
         const read = document.createElement('p');
         const removeButton = document.createElement('button');
         bookHolder.classList.add('book');
+        posterHolder.classList.add('poster');
         cover.src = book.cover;
         cover.classList.add('cover');
         title.innerText = book.title;
@@ -60,8 +62,10 @@ Array.prototype.populateShelf = function() {
         checkbox.checked = book.read ? true : false;
         removeButton.innerText = 'Remove';
         removeButton.classList.add('removeButton');
-        bookShelf.appendChild(bookHolder);
-        bookHolder.appendChild(cover);
+        bookShelf.appendChild(posterHolder);
+        posterHolder.appendChild(cover);
+        posterHolder.appendChild(bookHolder);
+        // bookHolder.appendChild(cover);
         bookHolder.appendChild(title);
         bookHolder.appendChild(author);
         bookHolder.appendChild(rating);
@@ -156,7 +160,7 @@ const book1 = new Book('Blade Runner 2049', 'Dennis Villenueve', true, 8, './204
 const book2 = new Book('Mad Max: Fury Road', 'George Miller', true, 8, './madmax.jpeg');
 const book3 = new Book('How To Train Your Dragon', 'Dean DeBlois & Chris Sanders', true, 10, './httyd.jpg');
 const book4 = new Book('Inception', 'Christopher Nolan', true, 9, './inception.jpg');
-const book5 = new Book('Everything Everywhere All At Once', 'Daniel Kwan & David Scheinert', true, 10, './eeaao.jpg');
+const book5 = new Book('Everything Everywhere All At Once', 'Daniel Kwan & Daniel Scheinert', true, 10, './eeaao.jpg');
 const book6 = new Book('Whiplash', 'Damien Chazelle', true, 10, './whiplash.jpg');
 const book7 = new Book('NOPE', 'Jordan Peele', true, 9, './nope.jpg');
 const book8 = new Book('Tropic Thunder', 'Ben Stiller', true, 10, './tt.jpg');
