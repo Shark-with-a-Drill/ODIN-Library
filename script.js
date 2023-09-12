@@ -75,7 +75,8 @@ Array.prototype.populateShelf = function() {
         bookHolder.appendChild(removeButton);
         removeButton.addEventListener('click', (event) => {
             const bookDiv = event.target.parentElement;
-            bookShelf.removeChild(bookDiv);
+            const posterDiv = bookDiv.parentElement;
+            bookShelf.removeChild(posterDiv);
             myLibrary = Book.prototype.removeBookFromLibrary(myLibrary, book.title);
         });
         checkbox.addEventListener('click', function() {
