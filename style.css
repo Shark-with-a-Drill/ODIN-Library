@@ -122,6 +122,10 @@
 .poster img {
   margin: 0;
   padding: 0;
+  border-radius: 1px;
+  border-style: solid;
+  object-fit: cover;
+  max-height: 440px;
 }
 
 .book {
@@ -129,12 +133,16 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
-    border-radius: 1px;
-    border-style: solid;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .85) 35%, rgba(0, 0, 0, 0.75) 60%, rgba(0, 0, 0, 0.5));
     gap: 10px;
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .book h2, .book h3, .book p, .book button {
@@ -149,6 +157,12 @@
   overflow-wrap: break-word;
   max-width: 300px;
 }
+
+.poster:hover .book {
+  opacity: 1;
+}
+
+/* you can affect effects/properties on other classes/elements with modification properties of a different element */
 
 .readBox {
     display: flex;
