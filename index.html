@@ -8,25 +8,50 @@
 </head>
 <body>
     <div class="main-grid">
-        <div id="header">
+        <div id="header" class="ease-in">
             <h3 id="title-1">der</h1>
             <h1 id="title-2">KINO</h1>
         </div>
         <div id="formholder">
             <form action="">
                 <div id="bookinfo">
-                    <input type="text" id="title" class="input" placeholder="Title" pattern="(^[A-Za-z0-9\s:'-]+$)" required>
-                    <input type="text" id="author" class="input" placeholder="Director" pattern="(^[A-Z\sa-z&]+$)" required>
-                    <input type="number" id="rating" class="input" placeholder="Rating" pattern="(^(\d+)$)" min="0" max="10" required>
-                    <div><input type="checkbox" id="read"> <p>Seen</p></div>
+                    <div class="input-container">
+                        <input type="text" id="title" class="input inputbook" placeholder="" pattern="(^[A-Za-z0-9\s:'\-]+$)" required>
+                        <span>
+                            Title
+                        </span>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="author" class="input inputbook" placeholder="" pattern="(^[A-Z\sa-z&]+$)" required>
+                        <span>
+                            Director
+                        </span>
+                    </div>
+                    <div class="input-container">
+                        <input type="number" id="rating" class="input inputbook" placeholder="Unrated" pattern="(^(\d+)$)" min="0" max="10">
+                        <span>
+                            Rating
+                        </span>
+                    </div>
+                    <div id="seen-check"><input type="checkbox" id="read"> <p>Seen</p></div>
                     <input type="file" id="cover" accept="image/*">
                     <button id="addbook">Add</button>
                 </div>
             </form>
             <form action="">
                 <div id="takebook">
-                    <input type="text" id="removename" placeholder="Title" pattern="(^[A-Z\sa-z]+$)" required>
-                    <input type="text" id="removeauthor" placeholder="Director" pattern="(^[A-Z\sa-z]+$)" required>
+                    <div class="input-container">
+                        <input type="text" class="input" id="removename" placeholder="" pattern="(^[A-Za-z0-9\s:'\-]+$)" required>
+                        <span>
+                            Title
+                        </span>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" class="input" id="removeauthor" placeholder="" pattern="(^[A-Z\sa-z&]+$)" required>
+                        <span>
+                            Director
+                        </span>
+                    </div>
                     <button id="removebook">Remove</button>
                 </div>
             </form>

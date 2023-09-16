@@ -1,6 +1,6 @@
 const bookButton = document.querySelector('#addbook');
 const removeButton = document.querySelector('#removebook');
-const input = document.querySelectorAll('.input');
+const input = document.querySelectorAll('.inputbook');
 const inputs = [...input];
 const bookShelf = document.querySelector('#bookholder');
 
@@ -11,6 +11,9 @@ function Book(title, author, read, rating, cover) {
     this.read = read;
     this.rating = rating;
     this.cover = cover;
+    if (this.rating == '') {
+        this.rating = 'Unrated';
+    }
 }
 
 Book.prototype.addBookToLibrary = function(myLibrary, title, author, read, rating, cover) {
@@ -55,7 +58,12 @@ Array.prototype.populateShelf = function() {
         title.setAttribute('sort-title', book.title);
         author.innerText = book.author;
         title.setAttribute('sort-author', book.author);
-        rating.innerText = book.rating + '/10';
+        if (book.rating == 'Unrated') {
+            rating.innerText = book.rating;
+        }
+        else {
+            rating.innerText = book.rating + '/10';
+        }
         readHolder.classList.add('readBox');
         checkbox.setAttribute('type', 'checkbox');
         read.innerText = book.read ? 'Seen' : 'Unwatched';
@@ -144,7 +152,8 @@ removeButton.addEventListener('click', function(event) {
     const allValid = removedTitle.checkValidity() && removedAuthor.checkValidity() && divFinderTitle != null;
     if (allValid && divFinderTitle.parentElement == divFinderAuthor.parentElement) {
         const div = divFinderTitle.parentElement;
-        bookShelf.removeChild(div);
+        const posterDiv = div.parentElement;
+        bookShelf.removeChild(posterDiv);
         myLibrary = Book.prototype.removeBookFromLibrary(myLibrary, removedTitle.value);
         removedTitle.value = '';
         removedAuthor.value = '';
@@ -169,8 +178,9 @@ const book9 = new Book('Kill Bill: Vol 1', 'Quentin Tarantino', true, 8, './bill
 const book10 = new Book('Jaws', 'Steven Spielberg', true, 9, './jaws.jpg');
 const book11 = new Book('The Menu', 'Mark Mylod', true, 10, './menu.jpg');
 const book12 = new Book('Midsommar', 'Ari Aster', false, 3, './midsommar.jpg');
+const book13 = new Book('Das Kapital', 'Karl Marx', false, 10, './commie.jpg');
 
-myLibrary.push(book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12);
+myLibrary.push(book13, book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12);
 myLibrary.populateShelf();
 
 //? extra/deprecated remove book method

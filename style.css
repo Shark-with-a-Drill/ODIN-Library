@@ -56,7 +56,7 @@
 
 .main-grid {
     display: grid;
-    grid-template-columns: 300px minmax(500px, 1fr);
+    grid-template-columns: 280px minmax(500px, 1fr);
     grid-template-rows: 1fr;
     min-width: 500px;
 }
@@ -70,6 +70,8 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0.5) 80%, rgba(0, 0, 0, 0));
+  position: sticky;
+  top: 0;
 }
 
 #header h1 {
@@ -93,13 +95,19 @@
     grid-auto-rows: min-content;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     justify-items: center;
+    animation: 1.3s 1 forwards cubic-bezier(.36,-0.01,.5,1.38) slideRight;
+    animation-delay: 0s;
+}
+@keyframes slideRight {              
+  0% { opacity: 0; transform: translateX(30px); }                
+  100% { opacity: 1; transform: translateX(0);   }
 }
 
 #bookinfo, #takebook {
     display: flex;
     flex-direction: column;
     max-width: 250px;
-    margin: 15px;
+    gap: 5px;
 }
 
 #formholder {
@@ -107,11 +115,25 @@
   grid-row: 2 / 3;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 25px;
+  align-items: end;
+  margin-top: 150px;
+  padding: 10px 10px 10px 0;
+  background-color: rgb(38, 40, 45);
   height: fit-content;
   position: sticky;
-  top: 0;
+  top: 200px;
+  animation: 1.3s 1 forwards cubic-bezier(.36,-0.01,.5,1.38) slideLeft;animation-delay: 0s;
+  gap: 20px;
+  border-style: solid;
+  border-left-width: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-color: rgb(167, 150, 120);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+}
+@keyframes slideLeft {              
+  0% { opacity: 0; transform: translateX(-30px); }                
+  100% { opacity: 1; transform: translateX(0);   }
 }
 
 .poster {
@@ -137,11 +159,11 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     text-align: center;
     background: linear-gradient(to bottom, rgba(0, 0, 0, .85) 35%, rgba(0, 0, 0, 0.75) 60%, rgba(0, 0, 0, 0.5));
-    gap: 10px;
+    gap: 5px;
     position: absolute;
     bottom: 0;
     opacity: 0;
@@ -160,6 +182,9 @@
   overflow-wrap: break-word;
   max-width: 300px;
 }
+.book h2 {
+  padding-top: 90px;
+}
 
 .poster:hover .book {
   opacity: 1;
@@ -176,4 +201,104 @@
     max-width: 326px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.ease-in {
+  animation: 1.3s 1 forwards cubic-bezier(.36,-0.01,.5,1.38) slideUp;animation-delay: 0s;
+}
+@keyframes slideUp {  
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: inherit;  }    
+} 
+
+#seen-check {
+  display: flex;
+  gap: 7.5px;
+  align-items: center;
+}
+
+input {
+  display: block;
+  border-radius: 4px;
+  padding: 6px 6px 6px 10px;
+  background-color: #e7eaed;
+  border: 0;
+  border-bottom: 1px solid #00000070;   
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+}
+.input {
+  width: 100%;
+}
+.input:valid, .input:valid:focus {
+  border: 2px solid #387d60;  
+}
+.input:focus {
+  border: 2px solid rgb(167, 150, 120);
+  outline: none;
+}
+
+.input:invalid:not(:placeholder-shown) {
+  border: 2px solid #9e3f6e; 
+}
+.input-container {
+  position: relative;
+  width: 100%;
+}
+span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  pointer-events: none;
+  text-transform: uppercase;
+  transition: all .4s;
+  color: #828490;
+}
+input:focus ~ span {
+    font-size: 10px;
+    transform: translateX(4px) translateY(-7px);
+    font-size: 0.80em;
+    padding: 0 6px;
+    background-color: rgb(167, 150, 120);
+    color: white;
+    border-radius: 2px;
+}
+input:valid ~ span{
+    font-size: 10px;
+    transform: translateX(4px) translateY(-7px);
+    font-size: 0.80em;
+    padding: 0 6px;
+    background-color: #387d60;
+    color: white;
+    border-radius: 2px;
+}
+input:invalid:not(:placeholder-shown) ~ span {
+  font-size: 10px;
+  transform: translateX(4px) translateY(-7px);
+  font-size: 0.80em;
+  padding: 0 6px;
+  background-color: #9e3f6e;
+  color: white;
+  border-radius: 2px;
+}
+
+.book button {
+  border-radius: 4px;
+  padding: 2px 5px 2px 5px;
+}
+
+button {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  background-color: rgb(157, 130, 78);
+  border-radius: 4px;
+  border-color: wheat;
+  border-width: 0px;
+  color: white;
+  padding: 4px 0 4px 0;
+}
+#addbook {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  border-radius: 4px;
 }
