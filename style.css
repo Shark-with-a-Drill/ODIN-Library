@@ -284,11 +284,6 @@ input:invalid:not(:placeholder-shown) ~ span {
   border-radius: 2px;
 }
 
-.book button {
-  border-radius: 4px;
-  padding: 2px 5px 2px 5px;
-}
-
 button {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
   background-color: rgb(157, 130, 78);
@@ -298,7 +293,19 @@ button {
   color: white;
   padding: 4px 0 4px 0;
 }
+.book button {
+  border-radius: 4px;
+  padding: 2px 5px 2px 5px;
+  background-color: #9e3f6e;
+}
 #addbook {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
   border-radius: 4px;
+}
+button:hover {
+  cursor: pointer;
+  background-color: rgb(192, 158, 94);
+}
+.book button:hover {
+  background-color: #b0477c;
 }
